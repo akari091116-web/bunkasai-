@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>待ち時間</title>
-</head>
+const API_URL = "https://script.google.com/macros/s/AKfycbwzGpAAqLfh9NovwG5C0WjJp39_w5jeOBXBcXR94rIDmGWEhxsnAte27qQejzDxk27r/exec";
 
-<body style="text-align:center; font-size:40px;">
-  <h1>現在の待ち時間</h1>
-  <div id="time">読み込み中...</div>
-
-<script>
-fetch("https://script.google.com/macros/s/AKfycbwzGpAAqLfh9NovwG5C0WjJp39_w5jeOBXBcXR94rIDmGWEhxsnAte27qQejzDxk27r/exec")
+fetch(API_URL)
   .then(res => res.json())
   .then(data => {
-    document.getElementById("time").innerText = data + "分";
-  });
-</script>
+    const list = document.getElementById("list");
 
-</body>
-</html>
+    data.forEach(user => {
+      const li = document.createElement("li");
+      li.textContent = `${user.name} : ${user.score} (${user.comment})`;
+      list.appendChild(li);
+    });
+  })
+  .catch(err => console.error(err));
