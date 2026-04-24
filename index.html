@@ -1,14 +1,13 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbwzGpAAqLfh9NovwG5C0WjJp39_w5jeOBXBcXR94rIDmGWEhxsnAte27qQejzDxk27r/exec";
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>GAS API Test</title>
+</head>
+<body>
+  <h1>スコア一覧</h1>
+  <ul id="list"></ul>
 
-fetch(API_URL)
-  .then(res => res.json())
-  .then(data => {
-    const list = document.getElementById("list");
-
-    data.forEach(user => {
-      const li = document.createElement("li");
-      li.textContent = `${user.name} : ${user.score} (${user.comment})`;
-      list.appendChild(li);
-    });
-  })
-  .catch(err => console.error(err));
+  <script src="app.js"></script>
+</body>
+</html>
