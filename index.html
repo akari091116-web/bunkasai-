@@ -2,12 +2,73 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>GAS API Test</title>
-</head>
-<body>
-  <h1>スコア一覧</h1>
-  <ul id="list"></ul>
+  <title>待ち時間</title>
 
-  <script src="app.js"></script>
+  <style>
+    body{
+      font-family:"Trebuchet MS";
+      background:linear-gradient(#e6f7ff,#ffe6f2);
+      text-align:center;
+      padding-top:80px;
+    }
+
+    h1{
+      color:#3399ff;
+      text-shadow:2px 2px white;
+      font-size:50px;
+    }
+
+    .card{
+      background:white;
+      width:350px;
+      margin:auto;
+      padding:30px;
+      border-radius:30px;
+      box-shadow:0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .time{
+      font-size:80px;
+      color:#ff4da6;
+    }
+
+    button{
+      margin-top:20px;
+      font-size:20px;
+      padding:10px 20px;
+      border:none;
+      border-radius:20px;
+      background:#3399ff;
+      color:white;
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🎠 アトラクション待ち時間</h1>
+
+<div class="card">
+  <div class="time" id="time">読み込み中...</div>
+  <button onclick="loadTime()">更新</button>
+</div>
+
+<script>
+function loadTime(){
+  fetch(https://script.google.com/macros/s/AKfycbxcMkIttmDUqNb_lqR3Sv3BZZJSzzdWDYFOMJMoPmsWELnOnYgidp5K6lX9EnBmdfZV/exec)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("time").innerText = data + " 分";
+    })
+    .catch(() => {
+      document.getElementById("time").innerText = "取得失敗";
+    });
+}
+
+// ページ開いたら自動読み込み
+loadTime();
+</script>
+
 </body>
 </html>
