@@ -1,62 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Wait Time Admin</title>
-
-<style>
-body{
-  font-family:"Trebuchet MS";
-  background:linear-gradient(#e6f7ff,#ffe6f2);
-  text-align:center;
-  margin-top:80px;
-}
-.card{
-  background:white;
-  width:350px;
-  margin:auto;
-  padding:30px;
-  border-radius:30px;
-  box-shadow:0 0 20px rgba(0,0,0,0.2);
-}
-input{
-  font-size:40px;
-  width:120px;
-  text-align:center;
-}
-button{
-  padding:12px 25px;
-  border:none;
-  border-radius:15px;
-  font-size:18px;
-  background:#ff4da6;
-  color:white;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>待ち時間</title>
 </head>
 
-<body>
-
-<h1>🎠 待ち時間 管理ページ</h1>
-
-<div class="card">
-  <input id="time" type="number" placeholder="0"> 分
-  <br><br>
-  <button onclick="save()">Googleに保存</button>
-  <p id="msg"></p>
-</div>
+<body style="text-align:center; font-size:40px;">
+  <h1>現在の待ち時間</h1>
+  <div id="time">読み込み中...</div>
 
 <script>
-function save(){
-  const time = document.getElementById("time").value;
-
-  fetch("PASTE_SCRIPT_URL_HERE?time="+time)
-  .then(()=> {
-    document.getElementById("msg").innerHTML="更新成功！";
-  })
-  .catch(()=> {
-    document.getElementById("msg").innerHTML="失敗…";
+fetch("https://script.google.com/macros/s/AKfycbwzGpAAqLfh9NovwG5C0WjJp39_w5jeOBXBcXR94rIDmGWEhxsnAte27qQejzDxk27r/exec")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("time").innerText = data + "分";
   });
-}
 </script>
 
 </body>
